@@ -135,7 +135,7 @@ else
 fi
 
 ### Fetch latest Bootloader-Resources from https://github.com/naixue233/SwitchScript
-curl -sL https://raw.github.com/naixue233/naixue_nx_atm_Auto_Script/main/resources/bootloader.zip -o bootloader.zip
+curl -sL https://raw.github.com/naixue233/AutoAtmosBuilder_8G/main/resources/bootloader.zip -o bootloader.zip
 if [ $? -ne 0 ]; then
     echo "Bootloader-Resources download\033[31m failed\033[0m."
 else
@@ -144,7 +144,7 @@ else
     rm bootloader.zip
 fi
 
-curl -sL https://raw.github.com/naixue233/naixue_nx_atm_Auto_Script/main/resources/Tesla.zip -o Tesla.zip
+curl -sL https://raw.github.com/naixue233/AutoAtmosBuilder_8G/main/resources/Tesla.zip -o Tesla.zip
 if [ $? -ne 0 ]; then
     echo "Tesla download\033[31m failed\033[0m."
 else
