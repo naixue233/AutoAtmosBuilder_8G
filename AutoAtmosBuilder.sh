@@ -134,15 +134,7 @@ else
     rm SysDVR.zip
 fi
 
-### Fetch latest Bootloader-Resources from https://github.com/naixue233/SwitchScript
-curl -sL https://raw.github.com/naixue233/AutoAtmosBuilder_8G/main/resources/bootloader.zip -o bootloader.zip
-if [ $? -ne 0 ]; then
-    echo "Bootloader-Resources download\033[31m failed\033[0m."
-else
-    echo "Bootloader-Resources download\033[32m success\033[0m."
-    unzip -oq bootloader.zip
-    rm bootloader.zip
-fi
+
 
 curl -sL https://raw.github.com/naixue233/AutoAtmosBuilder_8G/main/resources/Tesla.zip -o Tesla.zip
 if [ $? -ne 0 ]; then
@@ -170,7 +162,15 @@ else
     unzip -oq sigpatches.zip
     rm sigpatches.zip
 fi
-
+### Fetch latest Bootloader-Resources from https://github.com/naixue233/SwitchScript
+curl -sL https://raw.github.com/naixue233/AutoAtmosBuilder_8G/main/resources/bootloader.zip -o bootloader.zip
+if [ $? -ne 0 ]; then
+    echo "Bootloader-Resources download\033[31m failed\033[0m."
+else
+    echo "Bootloader-Resources download\033[32m success\033[0m."
+    unzip -oq bootloader.zip
+    rm bootloader.zip
+fi
 ### Fetch latest picofly_toolbox_0.2.bin from
 curl -sL https://raw.github.com/Ansem-SoD/Picofly/main/Firmwares/picofly_toolbox_0.2.bin -o picofly_toolbox_0.2.bin
 if [ $? -ne 0 ]; then
