@@ -136,7 +136,7 @@ fi
 
 
 
-curl -sL https://raw.github.com/naixue233/AutoAtmosBuilder_8G/main/resources/Tesla.zip -o Tesla.zip
+curl -sL https://raw.github.com/naixue233/AutoAtmosBuilder/main/resources/Tesla.zip -o Tesla.zip
 if [ $? -ne 0 ]; then
     echo "Tesla download\033[31m failed\033[0m."
 else
