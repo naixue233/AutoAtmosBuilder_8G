@@ -134,7 +134,20 @@ else
     rm SysDVR.zip
 fi
 
-
+### Fetch lastest sys-clk from https://api.github.com/repos/retronx-team/sys-clk/releases/latest
+curl -sL https://api.github.com/repos/retronx-team/sys-clk/releases/latest \
+  | jq '.tag_name' \
+  | xargs -I {} echo sys-clk {} >> ../description.txt
+curl -sL https://api.github.com/repos/retronx-team/sys-clk/releases/latest \
+  | jq '.assets' | jq '.[0].browser_download_url' \
+  | xargs -I {} curl -sL {} -o sys_clk.zip
+if [ $? -ne 0 ]; then
+    echo "sys-clk download\033[31m failed\033[0m."
+else
+    echo "sys-clk download\033[32m success\033[0m."
+    unzip -oq sys_clk.zip
+    rm sys_clk.zip
+fi
 
 curl -sL https://raw.github.com/naixue233/AutoAtmosBuilder/main/resources/Tesla.zip -o Tesla.zip
 if [ $? -ne 0 ]; then
@@ -143,6 +156,20 @@ else
     echo "Tesla download\033[32m success\033[0m."
     unzip -oq Tesla.zip
     rm Tesla.zip
+fi
+
+### Fetch lastest Ultrahand-Overlay from https://github.com/ppkantorski/Ultrahand-Overlay/releases/latest
+curl -sL https://api.github.com/repos/ppkantorski/Ultrahand-Overlay/releases/latest \
+  | jq '.tag_name' \
+  | xargs -I {} echo Ultrahand-Overlay {} >> ../description.txt
+curl -sL https://api.github.com/repos/ppkantorski/Ultrahand-Overlay/releases/latest \
+  | jq '.assets' | jq '.[1].browser_download_url' \
+  | xargs -I {} curl -sL {} -o ovlmenu.ovl
+if [ $? -ne 0 ]; then
+    echo "Ultrahand-Overlay download\033[31m failed\033[0m."
+else
+    echo "Ultrahand-Overlay download\033[32m success\033[0m."
+    mv ovlmenu.ovl ./switch/.overlays
 fi
 
 ### Fetch lastest Ultrahand-Overlay from https://github.com/ppkantorski/Ultrahand-Overlay/releases/latest
