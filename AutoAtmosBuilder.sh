@@ -145,6 +145,19 @@ else
     rm Tesla.zip
 fi
 
+### Fetch lastest Ultrahand-Overlay from https://github.com/ppkantorski/Ultrahand-Overlay/releases/latest
+curl -sL https://api.github.com/repos/ppkantorski/Ultrahand-Overlay/releases/latest \
+  | jq '.tag_name' \
+  | xargs -I {} echo Ultrahand-Overlay {} >> ../description.txt
+curl -sL https://api.github.com/repos/ppkantorski/Ultrahand-Overlay/releases/latest \
+  | jq '.assets' | jq '.[1].browser_download_url' \
+  | xargs -I {} curl -sL {} -o ovlmenu.ovl
+if [ $? -ne 0 ]; then
+    echo "Ultrahand-Overlay download\033[31m failed\033[0m."
+else
+    echo "Ultrahand-Overlay download\033[32m success\033[0m."
+    mv ovlmenu.ovl ./switch/.overlays
+fi
 
 ### Fetch latest boot.dat-Resources from https://github.com/naixue233/SwitchScript
 curl -sL https://raw.github.com/naixue233/naixue_nx_atm_Auto_Script/main/resources/boot.dat -o boot.dat
@@ -154,7 +167,7 @@ else
     echo "boot.dat-Resources download\033[32m success\033[0m."
 fi
 ### Fetch latest SigPatches.zip from https://raw.github.com/naixue233/naixue_nx_atm_Auto_Script/main/resources/
-curl -sL https://sigmapatches.su/sigpatches.zip -o sigpatches.zip
+curl -sL https://sigmapatches.su/sigpatches.zip?12.02.2023 -o sigpatches.zip
 if [ $? -ne 0 ]; then
     echo "SigPatches download\033[31m failed\033[0m."
 else
